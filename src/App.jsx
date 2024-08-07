@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import Card from "./Card";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemon, setPokemon] = useState([]);
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      const urls = [
+        "https://pokeapi.co/api/v2/pokemon/210",
+        "https://pokeapi.co/api/v2/pokemon/220",
+        "https://pokeapi.co/api/v2/pokemon/230",
+        "https://pokeapi.co/api/v2/pokemon/240",
+        "https://pokeapi.co/api/v2/pokemon/250",
+        "https://pokeapi.co/api/v2/pokemon/260",
+        "https://pokeapi.co/api/v2/pokemon/270",
+        "https://pokeapi.co/api/v2/pokemon/280",
+        "https://pokeapi.co/api/v2/pokemon/290",
+        "https://pokeapi.co/api/v2/pokemon/300",
+        "https://pokeapi.co/api/v2/pokemon/310",
+        "https://pokeapi.co/api/v2/pokemon/320",
+      ];
+
+      const promises = urls.map((url) => fetch(url).then((res) => res.json()));
+      const results = await Promise.all(promises);
+      setPokemon(results);
+    };
+
+    fetchPokemon();
+  }, []);
+
+  // const currentScore = null;
+  // const bestScore = null;
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Poké Memory</h1>
+
+      <div className="cards-div">
+        {pokemon.map((mon) => {
+          return <Card key={mon.id} pokemon={mon} />;
+        })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      {/* needs: */}
+      {/* - current score */}
+      {/* - best score */}
+      {/* - function to display cards (displayed in random order anytime a uyser clicks one) */}
+      {/* - cards (imgs and text fetched with api) */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
