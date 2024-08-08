@@ -1,9 +1,9 @@
 import "./Card.css";
 
-function Card({ pokemon }) {
+function Card({ pokemon, onClick }) {
   return (
     <>
-      <div className="card">
+      <div className="card" onClick={() => onClick(pokemon.id)}>
         <img
           className="pokemon-img"
           src={pokemon.sprites.front_default}

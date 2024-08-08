@@ -5,6 +5,13 @@ import "./App.css";
 function App() {
   const [pokemon, setPokemon] = useState([]);
 
+  let unshuffledPokemon = pokemon;
+
+  let shuffledPokemon = unshuffledPokemon
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+
   useEffect(() => {
     const fetchPokemon = async () => {
       const urls = [
@@ -30,24 +37,39 @@ function App() {
     fetchPokemon();
   }, []);
 
-  // const currentScore = null;
-  // const bestScore = null;
+  const [currentScore, setCurrentScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [guessedIds, setGuessedIds] = useState([]);
+
+  function handleScoreIncrease(id) {
+    console.log(guessedIds);
+    if (guessedIds.includes(id)) {
+      console.log("you guessed that already");
+      setCurrentScore(0);
+      setGuessedIds([]);
+    } else {
+      setCurrentScore(currentScore + 1);
+      if (currentScore >= bestScore) {
+        setBestScore(currentScore + 1);
+      }
+      setGuessedIds([...guessedIds, id]);
+    }
+  }
 
   return (
     <>
       <h1>Poké Memory</h1>
 
+      <p>Current Score: {currentScore}</p>
+      <p>Best Score: {bestScore}</p>
+
       <div className="cards-div">
-        {pokemon.map((mon) => {
-          return <Card key={mon.id} pokemon={mon} />;
+        {shuffledPokemon.map((mon) => {
+          return (
+            <Card key={mon.id} pokemon={mon} onClick={handleScoreIncrease} />
+          );
         })}
       </div>
-
-      {/* needs: */}
-      {/* - current score */}
-      {/* - best score */}
-      {/* - function to display cards (displayed in random order anytime a uyser clicks one) */}
-      {/* - cards (imgs and text fetched with api) */}
     </>
   );
 }
