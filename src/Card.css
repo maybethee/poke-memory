@@ -1,6 +1,6 @@
 .pokemon-img {
   width: 200px;
-  background-color: rgb(255, 232, 235);
+  background-color: #ffe8eb;
   border-radius: 12px;
 }
 
@@ -12,6 +12,19 @@
   border-radius: 23px;
   padding: 0.7rem;
   margin: 1rem;
-  background-color: rgb(255, 192, 203);
+  background-color: #ffc0cb;
   color: #242424;
+}
+
+.card:hover {
+  animation: glow 150ms ease-out forwards;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0px 0px 0px 0px #242424;
+  }
+  100% {
+    box-shadow: 0px 0px 10px 4px rgb(255, 216, 224);
+  }
 }

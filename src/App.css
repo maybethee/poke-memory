@@ -1,18 +1,57 @@
-/* body {
-  width: 100vw;
-  height: auto;
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  font-weight: bold;
-  font-size: 1000px;
-} */
-
 .cards-div {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   cursor: pointer;
+}
+
+.scores-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.current-score,
+.best-score {
+  border-radius: 50px;
+  margin: 0.5rem;
+  width: 160px;
+  padding: 0.2rem;
+}
+
+@keyframes scoreChange {
+  0% {
+    background-color: #242424;
+    box-shadow: 0 0 20px #242424;
+  }
+  25% {
+    background-color: #739244c3;
+    box-shadow: 0 0 30px #739244c3;
+  }
+  50% {
+    background-color: #c1ff6397;
+    box-shadow: 0 0 40px #c1ff6397;
+  }
+  75% {
+    background-color: #739244c3;
+    box-shadow: 0 0 30px #739244c3;
+  }
+  100% {
+    background-color: #242424;
+    box-shadow: 0 0 20px #242424;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate {
+  animation: scoreChange 0.2s ease-in-out, bounce 0.2s ease-in-out;
 }

@@ -60,8 +60,16 @@ function App() {
     <>
       <h1>Poké Memory</h1>
 
-      <p>Current Score: {currentScore}</p>
-      <p>Best Score: {bestScore}</p>
+      <div className="scores-container">
+        <p key={`current-${currentScore}`} className="current-score animate">
+          Current Score: {currentScore}
+        </p>
+        <p key={`best-${bestScore}`} className="best-score animate">
+          Best Score: {bestScore}
+        </p>
+      </div>
+      {/* <p className="current-score">Current Score: {currentScore}</p>
+      <p className="best-score">Best Score: {bestScore}</p> */}
 
       <div className="cards-div">
         {shuffledPokemon.map((mon) => {
