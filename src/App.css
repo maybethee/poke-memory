@@ -1,3 +1,9 @@
+.rules {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  font-weight: 200;
+}
+
 .cards-div {
   display: flex;
   flex-flow: row wrap;
@@ -14,15 +20,15 @@
 .current-score,
 .best-score {
   border-radius: 50px;
-  margin: 0.5rem;
-  width: 160px;
-  padding: 0.2rem;
+  margin: 0.1rem;
+  width: 200px;
+  padding: 0.1rem;
 }
 
 @keyframes scoreChange {
   0% {
-    background-color: #242424;
-    box-shadow: 0 0 20px #242424;
+    background-color: #131313;
+    box-shadow: 0 0 20px #131313;
   }
   25% {
     background-color: #739244c3;
@@ -37,8 +43,8 @@
     box-shadow: 0 0 30px #739244c3;
   }
   100% {
-    background-color: #242424;
-    box-shadow: 0 0 20px #242424;
+    background-color: #131313;
+    box-shadow: 0 0 20px #131313;
   }
 }
 

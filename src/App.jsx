@@ -15,18 +15,18 @@ function App() {
   useEffect(() => {
     const fetchPokemon = async () => {
       const urls = [
-        "https://pokeapi.co/api/v2/pokemon/210",
-        "https://pokeapi.co/api/v2/pokemon/220",
-        "https://pokeapi.co/api/v2/pokemon/230",
-        "https://pokeapi.co/api/v2/pokemon/240",
-        "https://pokeapi.co/api/v2/pokemon/250",
-        "https://pokeapi.co/api/v2/pokemon/260",
-        "https://pokeapi.co/api/v2/pokemon/270",
         "https://pokeapi.co/api/v2/pokemon/280",
         "https://pokeapi.co/api/v2/pokemon/290",
-        "https://pokeapi.co/api/v2/pokemon/300",
-        "https://pokeapi.co/api/v2/pokemon/310",
-        "https://pokeapi.co/api/v2/pokemon/320",
+        "https://pokeapi.co/api/v2/pokemon/286",
+        "https://pokeapi.co/api/v2/pokemon/328",
+        "https://pokeapi.co/api/v2/pokemon/255",
+        "https://pokeapi.co/api/v2/pokemon/338",
+        "https://pokeapi.co/api/v2/pokemon/333",
+        "https://pokeapi.co/api/v2/pokemon/364",
+        "https://pokeapi.co/api/v2/pokemon/360",
+        "https://pokeapi.co/api/v2/pokemon/302",
+        "https://pokeapi.co/api/v2/pokemon/326",
+        "https://pokeapi.co/api/v2/pokemon/317",
       ];
 
       const promises = urls.map((url) => fetch(url).then((res) => res.json()));
@@ -44,6 +44,14 @@ function App() {
   function handleScoreIncrease(id) {
     console.log(guessedIds);
     if (guessedIds.includes(id)) {
+      let repeatedPokemon = pokemon.filter((mon) => mon.id === id)[0];
+      // be nicer
+      alert(
+        `You already clicked ${
+          repeatedPokemon.name.charAt(0).toUpperCase() +
+          repeatedPokemon.name.slice(1)
+        }! Try again!`
+      );
       console.log("you guessed that already");
       setCurrentScore(0);
       setGuessedIds([]);
@@ -58,18 +66,20 @@ function App() {
 
   return (
     <>
-      <h1>Poké Memory</h1>
+      <h1>Poké-Memory</h1>
+      <p className="rules">
+        Test your memory! Click different pokemon consecutively without
+        repeating to increase your score. Can you get 12/12?
+      </p>
 
       <div className="scores-container">
         <p key={`current-${currentScore}`} className="current-score animate">
-          Current Score: {currentScore}
+          Current Score: {currentScore}/12
         </p>
         <p key={`best-${bestScore}`} className="best-score animate">
-          Best Score: {bestScore}
+          Best Score: {bestScore}/12
         </p>
       </div>
-      {/* <p className="current-score">Current Score: {currentScore}</p>
-      <p className="best-score">Best Score: {bestScore}</p> */}
 
       <div className="cards-div">
         {shuffledPokemon.map((mon) => {

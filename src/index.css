@@ -5,7 +5,7 @@
   text-align: center;
 
   color-scheme: light dark;
-  background-color: #242424;
+  background-color: #131313;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,7 +31,7 @@ body {
 }
 
 h1 {
-  color: rgba(255, 255, 255, 0.87);
+  color: white;
 
   font-size: 3.2em;
   line-height: 1;
