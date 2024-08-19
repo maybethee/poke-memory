@@ -37,7 +37,7 @@ function App() {
     fetchPokemon();
   }, []);
 
-  const [currentScore, setCurrentScore] = useState(0);
+  const [currentScore, setCurrentScore] = useState(12);
   const [bestScore, setBestScore] = useState(0);
   const [guessedIds, setGuessedIds] = useState([]);
 
@@ -45,7 +45,6 @@ function App() {
     console.log(guessedIds);
     if (guessedIds.includes(id)) {
       let repeatedPokemon = pokemon.filter((mon) => mon.id === id)[0];
-      // be nicer
       alert(
         `You already clicked ${
           repeatedPokemon.name.charAt(0).toUpperCase() +
@@ -82,11 +81,15 @@ function App() {
       </div>
 
       <div className="cards-div">
-        {shuffledPokemon.map((mon) => {
-          return (
-            <Card key={mon.id} pokemon={mon} onClick={handleScoreIncrease} />
-          );
-        })}
+        {currentScore === 12 ? (
+          <h2>Congratulations! You won!</h2>
+        ) : (
+          shuffledPokemon.map((mon) => {
+            return (
+              <Card key={mon.id} pokemon={mon} onClick={handleScoreIncrease} />
+            );
+          })
+        )}
       </div>
     </>
   );
