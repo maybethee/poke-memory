@@ -37,7 +37,7 @@ function App() {
     fetchPokemon();
   }, []);
 
-  const [currentScore, setCurrentScore] = useState(12);
+  const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [guessedIds, setGuessedIds] = useState([]);
 
